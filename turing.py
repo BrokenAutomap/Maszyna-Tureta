@@ -19,12 +19,9 @@ class AbstractTuringMachine(metaclass=ABCMeta):
     def action(self, state):
         pass
 # s0 = <,>,|; 1,3,4 ; 1,3,4:s1, 4,2,1: s2, 1,5,5:s2
-# State structure: 's0' : {[1, #, #, ...]: ['s1', [L, R, N, ...], [1, #, 4, _, ...]],
+# State structure: 's0' : {'1##...': ['s1', [L, R, N, ...], [1, #, 4, _, ...]],
 # [#, #, #, ...]:['s2',[<, >, |, ...], [1, #, 4, _, ...]], ...}
-# state[0] - state name
-# state[1] - the dictionary of possible next states, if the read (focused) values correspond to one of the dictionary
-# keys, according state is chosen, additionally each of the transitions to a new state (or the same one) is met with
-# specific movement of the tape which is written in the dictionary value on the second element of the list
+
 
 
 class TuringMachine(AbstractTuringMachine):
@@ -137,7 +134,7 @@ class TuringMachine(AbstractTuringMachine):
 
 
 
-turing = TuringMachine("919123+12383j+131+120j", 3)
+turing = TuringMachine("9+5j+2+21j", 3)
 turing.final_states = ["finish"]
 turing.initial_state = "start"
 turing.add_transition("start", {"default": ["move to end", ['R', 'N', 'N'], ['_', '_', '_']]})
@@ -215,49 +212,49 @@ turing.add_transition("addition without reminder", {'45#': ["addition without re
 
 turing.add_transition("addition without reminder", {'19#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
 turing.add_transition("addition without reminder", {'28#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'29#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'29#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
 turing.add_transition("addition without reminder", {'37#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'38#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'39#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'38#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'39#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
 turing.add_transition("addition without reminder", {'46#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'47#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'48#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'49#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'47#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'48#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'49#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
 turing.add_transition("addition without reminder", {'55#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'56#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'57#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'58#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'59#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'56#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'57#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'58#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
+turing.add_transition("addition without reminder", {'59#': ["addition with reminder", ['L','L','L'], ['#','#','4']]})
 turing.add_transition("addition without reminder", {'64#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'65#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'66#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'67#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'68#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'69#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'65#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'66#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'67#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
+turing.add_transition("addition without reminder", {'68#': ["addition with reminder", ['L','L','L'], ['#','#','4']]})
+turing.add_transition("addition without reminder", {'69#': ["addition with reminder", ['L','L','L'], ['#','#','5']]})
 turing.add_transition("addition without reminder", {'73#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'74#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'75#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'76#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'77#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'78#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'79#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'74#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'75#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'76#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
+turing.add_transition("addition without reminder", {'77#': ["addition with reminder", ['L','L','L'], ['#','#','4']]})
+turing.add_transition("addition without reminder", {'78#': ["addition with reminder", ['L','L','L'], ['#','#','5']]})
+turing.add_transition("addition without reminder", {'79#': ["addition with reminder", ['L','L','L'], ['#','#','6']]})
 turing.add_transition("addition without reminder", {'82#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'83#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'84#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'85#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'86#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'87#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'88#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'89#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'83#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'84#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'85#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
+turing.add_transition("addition without reminder", {'86#': ["addition with reminder", ['L','L','L'], ['#','#','4']]})
+turing.add_transition("addition without reminder", {'87#': ["addition with reminder", ['L','L','L'], ['#','#','5']]})
+turing.add_transition("addition without reminder", {'88#': ["addition with reminder", ['L','L','L'], ['#','#','7']]})
+turing.add_transition("addition without reminder", {'89#': ["addition with reminder", ['L','L','L'], ['#','#','8']]})
 turing.add_transition("addition without reminder", {'91#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'92#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'93#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'94#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'95#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'96#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'97#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'98#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
-turing.add_transition("addition without reminder", {'99#': ["addition with reminder", ['L','L','L'], ['#','#','0']]})
+turing.add_transition("addition without reminder", {'92#': ["addition with reminder", ['L','L','L'], ['#','#','1']]})
+turing.add_transition("addition without reminder", {'93#': ["addition with reminder", ['L','L','L'], ['#','#','2']]})
+turing.add_transition("addition without reminder", {'94#': ["addition with reminder", ['L','L','L'], ['#','#','3']]})
+turing.add_transition("addition without reminder", {'95#': ["addition with reminder", ['L','L','L'], ['#','#','4']]})
+turing.add_transition("addition without reminder", {'96#': ["addition with reminder", ['L','L','L'], ['#','#','5']]})
+turing.add_transition("addition without reminder", {'97#': ["addition with reminder", ['L','L','L'], ['#','#','6']]})
+turing.add_transition("addition without reminder", {'98#': ["addition with reminder", ['L','L','L'], ['#','#','7']]})
+turing.add_transition("addition without reminder", {'99#': ["addition with reminder", ['L','L','L'], ['#','#','8']]})
 
 
 
@@ -310,7 +307,7 @@ turing.add_transition("upper number ends", {'+9#': ["upper number ends", ['N','L
 
 
 
-turing.add_transition("both numbers end", {'###': ["addition finished", ['N','N','N'], ['_','_','_']]})
+turing.add_transition("both numbers end", {'default': ["addition finished", ['N','N','N'], ['_','_','_']]})
 
 
 turing.add_transition("bottom number ends", {'+##': ["addition finished", ['L','N','L'], ['#','#','+']]})
@@ -474,9 +471,20 @@ turing.add_transition("addition with reminder", {'90#': ["addition with reminder
 
 turing.add_transition("addition with reminder", {'+9#': ["upper number ends (reminder)", ['N', 'L', 'L'], ['_', '#', '0']]})
 
-turing.add_transition("addition with reminder", {'+##': ["both numbers end (reminder)", ['N', 'N', 'L'], ['#', '#', '1']]})
+turing.add_transition("addition with reminder", {'+##': ["both numbers end (reminder)", ['N', 'N', 'L'], ['+', '#', '1']]})
 
-turing.add_transition("addition with reminder", {'9##': ["bottom number ends (reminder)", ['L', 'N', 'L'], ['#', '#', '1']]})
+turing.add_transition("addition with reminder", {'9##': ["bottom number ends (reminder)", ['L', 'N', 'L'], ['#', '#', '0']]})
+
+turing.add_transition("bottom number ends (reminder)", {'0##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '1']]})
+turing.add_transition("bottom number ends (reminder)", {'1##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '2']]})
+turing.add_transition("bottom number ends (reminder)", {'2##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '3']]})
+turing.add_transition("bottom number ends (reminder)", {'3##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '4']]})
+turing.add_transition("bottom number ends (reminder)", {'4##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '5']]})
+turing.add_transition("bottom number ends (reminder)", {'5##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '6']]})
+turing.add_transition("bottom number ends (reminder)", {'6##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '7']]})
+turing.add_transition("bottom number ends (reminder)", {'7##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '8']]})
+turing.add_transition("bottom number ends (reminder)", {'8##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '9']]})
+
 
 turing.add_transition("addition with reminder", {'0##': ["bottom number ends", ['L', 'N',  'L'], ['#', '#', '1']]})
 turing.add_transition("addition with reminder", {'1##': ["bottom number ends", ['L', 'N', 'L'], ['#', '#', '2']]})
@@ -510,18 +518,23 @@ turing.add_transition("upper number ends (reminder)", {'+6#': ["upper number end
 turing.add_transition("upper number ends (reminder)", {'+7#': ["upper number ends", ['N', 'L', 'L'], ['+', '#', '8']]})
 turing.add_transition("upper number ends (reminder)", {'+8#': ["upper number ends", ['N', 'L', 'L'], ['+', '#', '9']]})
 
-turing.add_transition("upper number ends (reminder)", {'+##': ["addition finished", ['L', 'N', 'L'], ['#', '#', '+']]})
+turing.add_transition("upper number ends (reminder)", {'+##': ["append last 1", ['L', 'N', 'L'], ['#', '#', '1']]})
 
-turing.add_transition("both numbers end (reminder)", {'###': ["addition finished", ['L', 'N', 'L'], ['#', '#', '+']]})
+turing.add_transition("both numbers end (reminder)", {'default': ["addition finished", ['L', 'N', 'L'], ['#', '#', '+']]})
 
-turing.add_transition("bottom number ends (reminder)", {'+##': ["addition finished", ['L', 'N', 'L'], ['#', '#', '+']]})
+turing.add_transition("bottom number ends (reminder)", {'+##': ["append last 1", ['L', 'N', 'L'], ['#', '#', '1']]})
 
+turing.add_transition("bottom number ends (reminder)", {'9##': ["bottom number ends (reminder)", ['L', 'N', 'L'], ['#', '#', '0']]})
+
+turing.add_state("append last 1")
 turing.add_state("addition finished")
 turing.add_state("check if anything left to add")
 turing.add_state("copy down real")
 turing.add_state("find upper real")
 turing.add_state("align upper real")
 turing.add_state("align down real")
+
+turing.add_transition("append last 1", {'default': ["addition finished", ['N', 'N', 'L'], ['_', '#', '+']]})
 
 turing.add_transition("addition finished", {"default": ["check if anything left to add", ['N', 'N', 'N'], ['_', '_', '_']]})
 
