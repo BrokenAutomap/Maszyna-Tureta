@@ -18,10 +18,20 @@ class AbstractTuringMachine(metaclass=ABCMeta):
     @abstractmethod
     def action(self, state):
         pass
-# s0 = <,>,|; 1,3,4 ; 1,3,4:s1, 4,2,1: s2, 1,5,5:s2
+
+
+    @property
+    def nodes(self):
+        pass
+
+
+    @property
+    def transitions(self):
+        pass
+
+
 # State structure: 's0' : {'1##...': ['s1', [L, R, N, ...], [1, #, 4, _, ...]],
 # [#, #, #, ...]:['s2',[<, >, |, ...], [1, #, 4, _, ...]], ...}
-
 
 
 class TuringMachine(AbstractTuringMachine):
@@ -77,27 +87,29 @@ class TuringMachine(AbstractTuringMachine):
         print("current state: ", end="")
         print(state)
         if self.is_end(state):
-            self.print_data()
             return 1
-        else:
-            current_state_dict = self.state_dict.get(state)
-            transition = current_state_dict.get(self.get_focused())
-
-            if transition == None:
-                transition = current_state_dict.get('default')
-            print("current transition: ", end="")
-            print(transition)
-            next_state = transition[0]
+        if self.is_start(state):
             tape_index = 0
-            for value in transition[2]:
-                if value == '_':
-                    pass
-                else:
-                    self.tapes[tape_index][self.focused_cells[tape_index]] = value
-                tape_index += 1
-            self.move_tape(transition[1])
-            self.print_data()
-            self.action(next_state)
+            for tape in self.tapes:
+                if tape_index != 0:
+                    self.tapes[tape_index] = []
+        current_state_dict = self.state_dict.get(state)
+        transition = current_state_dict.get(self.get_focused())
+        if transition == None:
+            transition = current_state_dict.get('default')
+        print("current transition: ", end="")
+        print(transition)
+        next_state = transition[0]
+        tape_index = 0
+        for value in transition[2]:
+            if value == '_':
+                pass
+            else:
+                self.tapes[tape_index][self.focused_cells[tape_index]] = value
+            tape_index += 1
+        self.move_tape(transition[1])
+        self.print_data()
+        self.action(next_state)
 
     def get_focused(self):
         focused_values = ""
@@ -128,13 +140,24 @@ class TuringMachine(AbstractTuringMachine):
             chosen_state_dict = self.state_dict.get(state_name)
         chosen_state_dict.update(transition)
 
+    def input(self, input):
+        for character in input:
+            self.tapes[0].append(character)
+
+    def nodes(self):
+        for node in self.state_dict.keys():
+            print(node)
+
+    def transitions(self):
+        for node in self.state_dict.keys():
+            print(node, end=": \n")
+            for key, value in self.state_dict[node].items():
+                print("    ", end="")
+                print(key, end=": ")
+                print(value)
 
 
-                    # s0 = <,>,|; 1,3,4 ; 1,3,4:s1, 4,2,1: s2, 1,5,5:s2
-
-
-
-turing = TuringMachine("9+5j+2+21j", 3)
+turing = TuringMachine("", 3)
 turing.final_states = ["finish"]
 turing.initial_state = "start"
 turing.add_transition("start", {"default": ["move to end", ['R', 'N', 'N'], ['_', '_', '_']]})
@@ -582,4 +605,5 @@ turing.add_state("finish")
 
 turing.add_transition("delete plus", {'##+': ["finish", ['N', 'N', 'N'], ['#', '#', '#']]})
 
+turing.input("123+387533j+1+2993j")
 turing.action("start")
